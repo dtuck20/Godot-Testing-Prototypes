@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmvhlncupic2m"]
+
+[ext_resource type="Texture2D" uid="uid://btkxnwqnyhwqv" path="res://Top Down Test/Block.png" id="1_epoqw"]
+[ext_resource type="Script" path="res://Top Down Test/Levels/slider_game.gd" id="1_ihuer"]
+[ext_resource type="PackedScene" uid="uid://4fw3swlajk20" path="res://Top Down Test/Characters/slider_character.tscn" id="2_taxcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xah6"]
+size = Vector2(16, 15.6522)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7dcq"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spoh0"]
+size = Vector2(10, 1081)
+
+[node name="Slider_Game" type="Node2D"]
+script = ExtResource("1_ihuer")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -5
+position = Vector2(-4.45247e-05, -5.31077e-05)
+scale = Vector2(120, 67.5)
+texture = ExtResource("1_epoqw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+z_index = 1
+
+[node name="Ground" type="Sprite2D" parent="." groups=["Ground"]]
+modulate = Color(0.0705882, 1, 0.0862745, 1)
+position = Vector2(-5.53131e-05, 518)
+scale = Vector2(120, 2.875)
+texture = ExtResource("1_epoqw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground" groups=["Ground"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D" groups=["Ground"]]
+position = Vector2(1.09673e-06, -0.17392)
+shape = SubResource("RectangleShape2D_1xah6")
+
+[node name="Area2D" type="Area2D" parent="Ground" groups=["Ground"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Area2D" groups=["Ground"]]
+position = Vector2(-0.00833287, 0)
+shape = SubResource("RectangleShape2D_j7dcq")
+disabled = true
+
+[node name="LeftBoundry" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundry"]
+position = Vector2(-965, 0.5)
+shape = SubResource("RectangleShape2D_spoh0")
+
+[node name="RightBoundry" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RightBoundry"]
+position = Vector2(965, 0.5)
+shape = SubResource("RectangleShape2D_spoh0")
+
+[node name="Slider_Character" parent="." instance=ExtResource("2_taxcq")]
+position = Vector2(-98, 463)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 668.0
+offset_top = -453.0
+offset_right = 669.0
+offset_bottom = -430.0
+scale = Vector2(3, 3)
+uppercase = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

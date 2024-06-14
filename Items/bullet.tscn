@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0grou7r84oko"]
+
+[ext_resource type="Script" path="res://Top Down Test/Items/bullet.gd" id="1_pdp1u"]
+[ext_resource type="Texture2D" uid="uid://b700mjfarjh67" path="res://Top Down Test/Krillin  Maron.png" id="3_55iey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1nic"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtlqa"]
+atlas = ExtResource("3_55iey")
+region = Rect2(170, 375, 26, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmndi"]
+atlas = ExtResource("3_55iey")
+region = Rect2(196, 375, 26, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqeib"]
+atlas = ExtResource("3_55iey")
+region = Rect2(222, 375, 26, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ycif"]
+atlas = ExtResource("3_55iey")
+region = Rect2(248, 375, 26, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wpos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtlqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmndi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqeib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ycif")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_pdp1u")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_p1nic")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+position = Vector2(-1, -1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_5wpos")
+autoplay = "default"
+frame = 2
+frame_progress = 0.170922
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

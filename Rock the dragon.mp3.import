@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5cj5oy8c5vyl"
+path="res://.godot/imported/Rock the dragon.mp3-c0129a506e38284256fe51b4cf05584d.mp3str"
+
+[deps]
+
+source_file="res://Top Down Test/Rock the dragon.mp3"
+dest_files=["res://.godot/imported/Rock the dragon.mp3-c0129a506e38284256fe51b4cf05584d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://4fw3swlajk20"]
+
+[ext_resource type="Script" path="res://Top Down Test/Characters/slider_character.gd" id="1_ebwpg"]
+[ext_resource type="Texture2D" uid="uid://btkxnwqnyhwqv" path="res://Top Down Test/Block.png" id="1_nxj65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_024mm"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t88je"]
+size = Vector2(16, 16)
+
+[node name="Slider_Character" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(4, 4)
+script = ExtResource("1_ebwpg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_nxj65")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_024mm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Player"]]
+shape = SubResource("RectangleShape2D_t88je")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

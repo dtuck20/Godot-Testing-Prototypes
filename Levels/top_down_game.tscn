@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd4qlcoj1ti6q"]
+
+[ext_resource type="PackedScene" uid="uid://cix65lqtep2ej" path="res://Top Down Test/Levels/top_down_shooter_world.tscn" id="1_dm45e"]
+[ext_resource type="PackedScene" uid="uid://p7d6kr30dlin" path="res://Top Down Test/Characters/player_character.tscn" id="2_j2r54"]
+
+[node name="top_down_game" type="Node2D"]
+
+[node name="TopDownShooter" parent="." instance=ExtResource("1_dm45e")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_j2r54")]
+position = Vector2(623, 838)
